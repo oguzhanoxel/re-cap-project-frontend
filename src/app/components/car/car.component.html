@@ -1,0 +1,16 @@
+<table class="table">
+    <thead>
+        <th>Id</th>
+        <th>Car Name</th>
+        <th>Brand Name</th>
+        <th>Color</th>
+        <th>Daily Price</th>
+    </thead>
+    <tr *ngFor="let carDetails of carDetailsDto">
+        <td>{{ carDetails.id }}</td>
+        <td>{{ carDetails.carName }}</td>
+        <td>{{ carDetails.brandName }}</td>
+        <td>{{ carDetails.colorName }}</td>
+        <td>{{ carDetails.dailyPrice }}</td>
+    </tr>
+</table>

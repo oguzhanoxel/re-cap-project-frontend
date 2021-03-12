@@ -1,0 +1,16 @@
+<table class="table">
+    <thead>
+        <th>Id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Company Name</th>
+    </thead>
+    <tr *ngFor="let customerDetail of customerDetailsDto">
+        <td>{{ customerDetail.id }}</td>
+        <td>{{ customerDetail.firstName }}</td>
+        <td>{{ customerDetail.lastName }}</td>
+        <td>{{ customerDetail.email }}</td>
+        <td>{{ customerDetail.companyName }}</td>
+    </tr>
+</table>

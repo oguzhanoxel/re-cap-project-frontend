@@ -1,0 +1,26 @@
+<table class="table">
+    <thead>
+        <th>Id</th>
+        <th>Car Name</th>
+        <th>Model Year</th>
+        <th>Daily Price</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Company Name</th>
+        <th>Rent Date</th>
+        <th>Return Date</th>
+    </thead>
+    <tr *ngFor="let rentalDetail of rentalDetailsDto">
+        <td>{{ rentalDetail.id }}</td>
+        <td>{{ rentalDetail.carName }}</td>
+        <td>{{ rentalDetail.modelYear }}</td>
+        <td>{{ rentalDetail.dailyPrice }}</td>
+        <td>{{ rentalDetail.firstName }}</td>
+        <td>{{ rentalDetail.lastName }}</td>
+        <td>{{ rentalDetail.email }}</td>
+        <td>{{ rentalDetail.companyName }}</td>
+        <td>{{ rentalDetail.rentDate }}</td>
+        <td>{{ rentalDetail.returnDate }}</td>
+    </tr>
+</table>
