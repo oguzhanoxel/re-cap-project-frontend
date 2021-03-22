@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CarDetailDto } from 'src/app/models/carDetailDto';
 import { CarService } from 'src/app/services/car.service';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-car',
@@ -11,7 +12,8 @@ import { CarService } from 'src/app/services/car.service';
 export class CarComponent implements OnInit {
   cars:CarDetailDto[]=[];
   dataLoaded = false;
-  constructor(private carService:CarService, private activatedRoute:ActivatedRoute) { }
+  filterText = "";
+  constructor(private carService:CarService, private dataService:DataService, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params=>{
@@ -23,6 +25,7 @@ export class CarComponent implements OnInit {
         this.getCars();
       }
     });
+    this.setFilterText();
   }
   getCars(){
     this.carService.getDetails().subscribe(response=>{
@@ -43,5 +46,9 @@ export class CarComponent implements OnInit {
       this.cars = response.data;
       this.dataLoaded = true;
     });
+  }
+
+  setFilterText(){
+    this.dataService.currentMessage.subscribe(data => this.filterText = data)
   }
 }
