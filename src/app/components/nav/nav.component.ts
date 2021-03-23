@@ -19,14 +19,13 @@ export class NavComponent implements OnInit {
 
   createSeachForm(){
     this.searchForm = this.formBuilder.group({
-      searchText:["",Validators.minLength(3)]
+      searchText:[]
     });
   }
 
   search(){
     if(this.searchForm.valid){
       let obj = Object.assign({},this.searchForm.value)
-      console.log(obj.searchText)
       this.dataService.changeMessage(obj.searchText)
     }else{
       this.toastrService.error("Something wrongs")

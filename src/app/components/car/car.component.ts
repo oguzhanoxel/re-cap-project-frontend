@@ -12,8 +12,14 @@ import { DataService } from 'src/app/services/data.service';
 export class CarComponent implements OnInit {
   cars:CarDetailDto[]=[];
   dataLoaded = false;
+  temp:any;
   filterText = "";
-  constructor(private carService:CarService, private dataService:DataService, private activatedRoute:ActivatedRoute) { }
+  filtersText: string[];
+  constructor(
+      private carService:CarService,
+      private dataService:DataService,
+      private activatedRoute:ActivatedRoute
+    ) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params=>{
@@ -25,7 +31,10 @@ export class CarComponent implements OnInit {
         this.getCars();
       }
     });
-    this.setFilterText();
+
+    if(!this.filterText){
+      this.setFilterText();
+    }
   }
   getCars(){
     this.carService.getDetails().subscribe(response=>{
@@ -49,6 +58,6 @@ export class CarComponent implements OnInit {
   }
 
   setFilterText(){
-    this.dataService.currentMessage.subscribe(data => this.filterText = data)
+    this.dataService.currentMessage.subscribe(data => this.temp = data)
   }
 }

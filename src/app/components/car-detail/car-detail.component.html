@@ -1,11 +1,26 @@
 <div class="card mt-4">
-    <img class="card-img-top img-fluid" src="https://localhost:44348/{{ car[0].imagePaths[0] }}" alt="">
+    <div class="card-head">
+      <div id="carouselExampleFade" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div *ngFor="let image of carImages; index as i; first as firstImage" class="carousel-item" [ngClass]="{ active: firstImage }" >
+            <img [src]="apiUrl + image.imagePath" class="d-block w-100" alt="..." />
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
     <div class="card-body">
-      <h3 class="card-title">{{ car[0].carName }}</h3>
-      <h4>{{ car[0].dailyPrice }} #</h4>
-      <p class="card-text">{{ car[0].description }}</p>
-      <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-      4.0 stars
+      <h3 class="card-title">{{ car[0]?.carName }}</h3>
+      <h4>{{ car[0]?.dailyPrice }} #</h4>
+      <p class="card-text text-secondary">{{ car[0]?.description }}</p>
+      <span class="text-secondary fw-bold fs-6">({{ car[0]?.brandName }} / {{ car[0]?.modelYear }} / {{ car[0]?.colorName }})</span>
     </div>
   </div>
   <!-- /.card -->
