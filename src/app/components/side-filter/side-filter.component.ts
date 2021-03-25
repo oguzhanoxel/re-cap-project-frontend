@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Brand } from 'src/app/models/brand';
 import { Color } from 'src/app/models/color';
 import { BrandService } from 'src/app/services/brand.service';
 import { ColorService } from 'src/app/services/color.service';
-import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-side-filter',
@@ -18,7 +18,7 @@ export class SideFilterComponent implements OnInit {
   filtersForm:FormGroup
   
   constructor(
-    private dataService:DataService,
+    private router:Router,
     private toastrService:ToastrService,
     private brandService:BrandService,
     private colorService:ColorService,
@@ -34,7 +34,10 @@ export class SideFilterComponent implements OnInit {
   applyFilters(){
     if(this.filtersForm.valid){
       let obj = Object.assign({}, this.filtersForm.value)
-      console.log(obj)
+      this.router.navigate([''], { queryParams: { 
+        brand: obj.brandOption,
+        color: obj.colorOption
+        } });      
     }else{
       this.toastrService.error("Something Wrong!!!")
     }

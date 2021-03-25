@@ -18,6 +18,7 @@ import { CarDetailComponent } from './components/car-detail/car-detail.component
 import {ToastrModule} from 'ngx-toastr';
 import { FilterPipe } from './pipes/filter.pipe';
 import { SideFilterComponent } from './components/side-filter/side-filter.component';
+import { SearchPipe } from './pipes/search.pipe';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { SideFilterComponent } from './components/side-filter/side-filter.compon
     CarDetailComponent,
     FilterPipe,
     SideFilterComponent,
+    SearchPipe,
   ],
   imports: [
     BrowserModule,

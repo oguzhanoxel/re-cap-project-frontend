@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-nav',
@@ -11,7 +11,11 @@ import { DataService } from 'src/app/services/data.service';
 export class NavComponent implements OnInit {
   searchForm: FormGroup
 
-  constructor(private formBuilder:FormBuilder, private dataService:DataService, private toastrService:ToastrService) { }
+  constructor(
+    private router:Router,
+    private formBuilder:FormBuilder,
+    private toastrService:ToastrService
+    ) { }
 
   ngOnInit(): void {
     this.createSeachForm();
@@ -26,7 +30,9 @@ export class NavComponent implements OnInit {
   search(){
     if(this.searchForm.valid){
       let obj = Object.assign({},this.searchForm.value)
-      this.dataService.changeMessage(obj.searchText)
+      this.router.navigate([''], { queryParams: { 
+        search: obj.searchText
+       } });
     }else{
       this.toastrService.error("Something wrongs")
     }

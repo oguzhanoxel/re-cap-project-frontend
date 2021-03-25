@@ -1,5 +1,5 @@
 <div class="row">
-    <div *ngFor="let car of cars | filter:filterText" class="col-md-4">
+    <div *ngFor="let car of cars | search:searchText" class="col-md-4">
         <div class="card" style="width: 18rem;">
             <img src="https://localhost:44348/{{ car.imagePaths[0] }}" class="img-thumbnail" alt="...">
             <div class="card-body">
