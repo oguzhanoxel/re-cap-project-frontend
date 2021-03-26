@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { CarDetailDto } from 'src/app/models/carDetailDto';
 import { CarService } from 'src/app/services/car.service';
 
@@ -18,6 +19,7 @@ export class CarComponent implements OnInit {
   filtersText: string[];
   constructor(
       private carService:CarService,
+      private toastrService:ToastrService,
       private activatedRoute:ActivatedRoute
     ) { }
 
@@ -59,10 +61,26 @@ export class CarComponent implements OnInit {
     this.searchText = search
   }
 
-  filterCars(brand?:number, color?:number){
-    console.log(brand+"/"+color)
-    this.carService.getDetailsFilter(brand, color).subscribe(response=>{
-      this.cars = response.data
-    });
+  filterCars(brand:number, color:number){
+
+    if((brand!==0) && (color!==0)){
+      this.carService.getDetailsFilter(brand, color).subscribe(response=>{
+        this.cars = response.data
+        this.toastrService.info(this.cars.length + " results found")
+      });
+    } 
+
+    if(brand!==0){
+      this.carService.getDetailsByBrand(brand).subscribe(response=>{
+        this.cars = response.data
+        this.toastrService.info(this.cars.length + " results found")
+      })
+    }
+    if(color!==0){
+      this.carService.getDetailsByColor(color).subscribe(response=>{
+        this.cars = response.data
+        this.toastrService.info(this.cars.length + " results found")
+      })
+    }
   }
 }

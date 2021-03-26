@@ -19,7 +19,6 @@ export class SideFilterComponent implements OnInit {
   
   constructor(
     private router:Router,
-    private toastrService:ToastrService,
     private brandService:BrandService,
     private colorService:ColorService,
     private formBuilder:FormBuilder
@@ -38,8 +37,6 @@ export class SideFilterComponent implements OnInit {
         brand: obj.brandOption,
         color: obj.colorOption
         } });      
-    }else{
-      this.toastrService.error("Something Wrong!!!")
     }
   }
 
