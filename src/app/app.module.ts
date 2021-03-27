@@ -19,6 +19,10 @@ import {ToastrModule} from 'ngx-toastr';
 import { FilterPipe } from './pipes/filter.pipe';
 import { SideFilterComponent } from './components/side-filter/side-filter.component';
 import { SearchPipe } from './pipes/search.pipe';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { from } from 'rxjs';
+import { EntityListComponent } from './components/entity-list/entity-list.component';
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 @NgModule({
   declarations: [
@@ -33,6 +37,8 @@ import { SearchPipe } from './pipes/search.pipe';
     FilterPipe,
     SideFilterComponent,
     SearchPipe,
+    EntityListComponent,
+    TruncatePipe,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +49,8 @@ import { SearchPipe } from './pipes/search.pipe';
     ReactiveFormsModule,
     ToastrModule.forRoot({
       positionClass:"toast-bottom-right"
-    })
+    }),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

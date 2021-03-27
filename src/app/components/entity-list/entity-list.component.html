@@ -1,0 +1,153 @@
+<div class="row">
+    <div class="col-md-2">
+        <div class="d-grid gap-2">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#brandAddModal">Add Brand</button>
+        </div>
+        <div class="d-grid gap-2">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#colorAddModal">Add Color</button>
+        </div>
+        <div class="d-grid gap-2">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#carAddModal">Add Car</button>
+        </div>
+    </div>
+    <div class="col-md-10">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Car Name</th>
+                <th scope="col">Brand</th>
+                <th scope="col">Model Year</th>
+                <th scope="col">Color</th>
+                <th scope="col">Daily Price</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let car of cars">
+                <th scope="row">{{ car.id }}</th>
+                <td>{{ car.carName }}</td>
+                <td>{{ car.brandName }}</td>
+                <td>{{ car.modelYear }}</td>
+                <td>{{ car.colorName }}</td>
+                <td>{{ car.dailyPrice }}</td>
+                <td><button class="btn btn-danger btn-sm" (click)="deleteCar(car.id)">Delete</button></td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Brand</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let brand of brands">
+                <th scope="row">{{ brand.id }}</th>
+                <td>{{ brand.name }}</td>
+                <td><button class="btn btn-danger btn-sm" (click)="deleteBrand(brand)">Delete</button></td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Color</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let color of colors">
+                <th scope="row">{{ color.id }}</th>
+                <td>{{ color.name }}</td>
+                <td><button class="btn btn-danger btn-sm" (click)="deleteColor(color)">Delete</button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="brandAddModal" tabindex="-1" aria-labelledby="brandAddModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="brandAddModal">Add Brand</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="brandAddForm" class="row g-3">
+                <div class="col-auto">
+                    <input formControlName="name" type="text" class="form-control" id="brandName" placeholder="Brand Name">
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button (click)="addBrand()" type="button" class="btn btn-primary">Save</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="modal fade" id="colorAddModal" tabindex="-1" aria-labelledby="colorAddModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="colorAddModal">Add Color</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="colorAddForm" class="row g-3">
+                <div class="col-auto">
+                    <input formControlName="name" type="text" class="form-control" id="colorName" placeholder="Color Name">
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button (click)="addColor()" type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="modal fade" id="carAddModal" tabindex="-1" aria-labelledby="carAddModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="carAddModal">Add Car</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="carAddForm" class="row g-3">
+                <select formControlName="brandID" id="brandsSelect" class="form-select">
+                    <option *ngFor="let brand of brands" [ngValue]="brand.id">{{ brand.name }}</option>
+                </select>
+                <select formControlName="colorID" id="colorSelect" class="form-select">
+                    <option *ngFor="let color of colors" [ngValue]="color.id">{{ color.name }}</option>
+                </select>
+                <div class="form-group">
+                    <input  formControlName="name" type="text" class="form-control" id="carNameInput" placeholder="Car Name">
+                </div>
+                <div class="form-group">
+                    <input  formControlName="modelYear" type="number" class="form-control" id="modelYearInput" placeholder="Model Year">
+                </div>
+                <div class="form-group">
+                    <input  formControlName="dailyPrice" type="number" class="form-control" id="dailyPriceInput" placeholder="Daily Price">
+                </div>
+                <div class="form-group">
+                    <textarea formControlName="description" class="form-control" id="descriptionInput" rows="3"></textarea>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button (click)="addCar()" type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+</div>
+
