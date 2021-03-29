@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CarDetailDto } from 'src/app/models/carDetailDto';
+import { CarImage } from 'src/app/models/carImage';
+import { CarImageService } from 'src/app/services/car-image.service';
 import { CarService } from 'src/app/services/car.service';
 
 @Component({
@@ -12,7 +14,6 @@ import { CarService } from 'src/app/services/car.service';
 export class CarComponent implements OnInit {
   cars:CarDetailDto[]=[];
   dataLoaded = false;
-  temp:any;
   searchText = "";
   brandId:number;
   colorId:number;
@@ -20,6 +21,7 @@ export class CarComponent implements OnInit {
   apiUrl = "https://localhost:44348/"
   constructor(
       private carService:CarService,
+      private carImageService:CarImageService,
       private toastrService:ToastrService,
       private activatedRoute:ActivatedRoute
     ) { }

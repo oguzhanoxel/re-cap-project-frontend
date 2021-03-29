@@ -8,7 +8,7 @@
                 </div>
             </div>
         </div>
-        <div *ngIf="carImages.length !== 5" class="col-md-4">
+        <div *ngIf="carImages.length !==5" class="col-md-4">
             <div class="card text-center" style="width: 18rem;">
                 <img src="assets/img/default-img.jpg" style="object-fit: cover;" alt="..." />
                 <div class="card-body">
@@ -19,7 +19,7 @@
                     </form>
                 </div>
                 <div class="card-footer">
-                    <button (click)="addImage(carImages[0].carID)" class="btn btn-success">Add</button>
+                    <button (click)="addImage(currentCarId)" class="btn btn-success">Add</button>
                 </div>
             </div>
         </div>

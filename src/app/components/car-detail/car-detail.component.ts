@@ -11,7 +11,7 @@ import { CarService } from 'src/app/services/car.service';
   styleUrls: ['./car-detail.component.css']
 })
 export class CarDetailComponent implements OnInit {
-  car:CarDetailDto[] = [];
+  car:CarDetailDto;
   carImages:CarImage[] = [];
   apiUrl = "https://localhost:44348/"
 

@@ -4,20 +4,38 @@ import { Observable } from 'rxjs';
 import { ListResponseModel } from '../models/listResponseModel';
 import { Rental } from '../models/rental';
 import { RentalDetailDto } from '../models/rentalDetailDto';
+import { ResponseModel } from '../models/responseModel';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class RentalService {
-  apiUrl = "https://localhost:44348/api/rentals/"
+  apiUrl = "https://localhost:44348/api/"
   constructor(private httpClient:HttpClient) { }
 
   getRentals():Observable<ListResponseModel<Rental>>{
-    return this.httpClient.get<ListResponseModel<Rental>>(this.apiUrl+"getall");
+    let path = this.apiUrl + "rentals/getall"
+    return this.httpClient.get<ListResponseModel<Rental>>(path);
   }
 
   getDetails():Observable<ListResponseModel<RentalDetailDto>>{
-    return this.httpClient.get<ListResponseModel<RentalDetailDto>>(this.apiUrl+"details");
+    let path = this.apiUrl + "rentals/details"
+    return this.httpClient.get<ListResponseModel<RentalDetailDto>>(path);
+  }
+  
+  add(rental:Rental):Observable<ResponseModel>{
+    let path = this.apiUrl + "rentals/add";
+    return this.httpClient.post<ResponseModel>(path, rental)
+  }
+
+  delete(rental:Rental):Observable<ResponseModel>{
+    let path = this.apiUrl + "rentals/delete";
+    return this.httpClient.post<ResponseModel>(path, rental);
+  }
+
+  update(rental:Rental):Observable<ResponseModel>{
+    let path = this.apiUrl + "rentals/update";
+    return this.httpClient.post<ResponseModel>(path, rental);
   }
 }

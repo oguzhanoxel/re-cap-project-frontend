@@ -1,6 +1,7 @@
 <div class="card mt-4">
     <div class="card-head">
-      <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+
+      <div id="carouselExampleFade" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
           <div *ngFor="let image of carImages; index as i; first as firstImage" class="carousel-item" [ngClass]="{ active: firstImage }" data-bs-interval="2000">
             <img [src]="apiUrl + image.imagePath" class="d-block w-100" alt="...">
@@ -15,15 +16,38 @@
           <span class="visually-hidden">Next</span>
         </button>
       </div>
+
     </div>
     <div class="card-body">
-      <h3 class="card-title">{{ car[0]?.carName }}</h3>
-      <h4>{{ car[0]?.dailyPrice }} #</h4>
-      <p class="card-text text-secondary">{{ car[0]?.description }}</p>
-      <span class="text-secondary fw-bold fs-6">({{ car[0]?.brandName }} / {{ car[0]?.modelYear }} / {{ car[0]?.colorName }})</span>
+      <div class="container col-md-6">
+        <div class="d-grid gap-2">
+          <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#rentModal">RENT</button>
+        </div>
+      </div>
+      <h3 class="card-title">{{ car?.carName }}</h3>
+      <h4>{{ car?.dailyPrice }} #</h4>
+      <p class="card-text text-secondary">{{ car?.description }}</p>
+      <span class="text-secondary fw-bold fs-6">({{ car?.brandName }} / {{ car?.modelYear }} / {{ car?.colorName }})</span>
     </div>
   </div>
-  <!-- /.card -->
+
+  <div class="modal fade" id="rentModal" tabindex="-1" aria-labelledby="rentModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="rentModal">Rent</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- <div class="card card-outline-secondary my-4">
     <div class="card-header">
@@ -42,4 +66,3 @@
       <a href="#" class="btn btn-success">Leave a Review</a>
     </div>
   </div> -->
-  <!-- /.card -->
