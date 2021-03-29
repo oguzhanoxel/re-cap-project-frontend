@@ -17,6 +17,7 @@ export class CarComponent implements OnInit {
   brandId:number;
   colorId:number;
   filtersText: string[];
+  apiUrl = "https://localhost:44348/"
   constructor(
       private carService:CarService,
       private toastrService:ToastrService,
@@ -62,25 +63,9 @@ export class CarComponent implements OnInit {
   }
 
   filterCars(brand:number, color:number){
-
-    if((brand!==0) && (color!==0)){
-      this.carService.getDetailsFilter(brand, color).subscribe(response=>{
-        this.cars = response.data
-        this.toastrService.info(this.cars.length + " results found")
-      });
-    } 
-
-    if(brand!==0){
-      this.carService.getDetailsByBrand(brand).subscribe(response=>{
-        this.cars = response.data
-        this.toastrService.info(this.cars.length + " results found")
-      })
-    }
-    if(color!==0){
-      this.carService.getDetailsByColor(color).subscribe(response=>{
-        this.cars = response.data
-        this.toastrService.info(this.cars.length + " results found")
-      })
-    }
+    this.carService.getDetailsFilter(brand, color).subscribe(response=>{
+      this.cars = response.data
+      this.toastrService.info(this.cars.length + " results found")
+    });
   }
 }

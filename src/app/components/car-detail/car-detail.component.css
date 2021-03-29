@@ -3,3 +3,7 @@
     width: 700px; 
     object-fit: contain;
 }
+
+.carousel-control-next-icon, .carousel-control-prev-icon {
+    background-color: black;
+}

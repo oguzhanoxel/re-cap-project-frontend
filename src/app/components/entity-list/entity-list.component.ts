@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Brand } from 'src/app/models/brand';
-import { Car } from 'src/app/models/car';
 import { CarDetailDto } from 'src/app/models/carDetailDto';
 import { Color } from 'src/app/models/color';
 import { BrandService } from 'src/app/services/brand.service';
@@ -17,7 +15,6 @@ import { ColorService } from 'src/app/services/color.service';
 })
 export class EntityListComponent implements OnInit {
 
-  car:Car;
   cars:CarDetailDto[]=[];
   brands:Brand[]=[];
   colors:Color[]=[];
@@ -160,15 +157,25 @@ export class EntityListComponent implements OnInit {
     }
   }
 
-  deleteCar(carId:number){
-    this.carService.getCarById(carId).subscribe(response =>{
-      this.car = response.data
+  deleteCar(carDto:CarDetailDto){
+    console.log(carDto)
+    this.carService.getCarById(carDto.id).subscribe(response =>{
+      let car = response.data
+      console.log(car)
+
+      if(confirm("Are you sure you want to delete '" + carDto.carName + "'")){
+        this.carService.delete(car).subscribe(response=>{
+          this.toastrService.info(carDto.carName + " deleted.")
+          this.getCars();
+        }, responseError=>{
+          if(responseError.error.Errors.length>0){
+            for (let i = 0; i <responseError.error.Errors.length; i++) {
+              this.toastrService.error(responseError.error.Errors[i].ErrorMessage
+                ,"Validation Error")
+            }       
+          }
+        });
+      }
     });
-    if(confirm("Are you sure you want to delete '" + this.car.name + "'")){
-      this.carService.delete(this.car).subscribe(response=>{
-        this.toastrService.info(this.car.name + " deleted.")
-        this.getCars();
-      });
-    }
   }
 }

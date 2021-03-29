@@ -23,6 +23,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { from } from 'rxjs';
 import { EntityListComponent } from './components/entity-list/entity-list.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { ImgListComponent } from './components/img-list/img-list.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     SearchPipe,
     EntityListComponent,
     TruncatePipe,
+    ImgListComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row">
+        <div *ngFor="let image of carImages; index as i;" class="col-md-4">
+            <div class="card text-center" style="width: 18rem;">
+                <img [src]="apiUrl + image.imagePath" style="object-fit: contain;" alt="..." />
+                <div class="card-body">
+                    <button (click)="deleteImage(image)" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="carImages.length !== 5" class="col-md-4">
+            <div class="card text-center" style="width: 18rem;">
+                <img src="assets/img/default-img.jpg" style="object-fit: cover;" alt="..." />
+                <div class="card-body">
+                    <form [formGroup]="addImageForm">
+                        <div class="form-group">
+                            <input formControlName="file" (change)="onFileChange($event)" class="form-control" type="file" id="formFile">
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <button (click)="addImage(carImages[0].carID)" class="btn btn-success">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
