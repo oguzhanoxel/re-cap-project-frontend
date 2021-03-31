@@ -1,9 +1,9 @@
-<div class="row">
+<div class="row" style="margin-top: 73px;">
     <div class="col-md-3">
         <app-side-filter></app-side-filter>
     </div>
     <div class="col-md-9">
-        <div class="row">
+        <!-- <div class="row">
             <div *ngFor="let car of cars | search:searchText" class="col-md-4">
                 <div class="card" style="width: 18rem;">
                     <img *ngIf="car.imagePaths[0]" [src]="apiUrl+car.imagePaths[0]" class="img-thumbnail" alt="...">
@@ -16,6 +16,31 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
+        <div class="album py-5 bg-light">
+            <div class="container">
+        
+              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                  
+                <div class="col" *ngFor="let car of cars | search:searchText">
+                  <div class="card shadow-sm">
+                    <img *ngIf="car.imagePaths[0]" [src]="apiUrl+car.imagePaths[0]" class="card-img-top" alt="...">
+                    <img *ngIf="!car.imagePaths[0]" src="assets/img/default-img.jpg" class="card-img-top" alt="...">        
+                    <div class="card-body">
+                      <h5 class="card-title">{{ car.carName }}</h5>
+                      <p class="card-text">{{ car.description | truncate:150 }}</p>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                          <button routerLink="/cars/{{ car.id }}" type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                        </div>
+                        <small class="text-muted">{{ car.modelYear }}</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
     </div>
 </div>

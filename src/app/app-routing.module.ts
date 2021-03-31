@@ -4,13 +4,16 @@ import { CarDetailComponent } from './components/car-detail/car-detail.component
 import { CarComponent } from './components/car/car.component';
 import { EntityListComponent } from './components/entity-list/entity-list.component';
 import { ImgListComponent } from './components/img-list/img-list.component';
+import { LoginComponent } from './components/login/login.component';
+import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
   {path:"", component:CarComponent},
   {path:"cars", component:CarComponent},
   {path:"cars/:carId", component:CarDetailComponent},
   {path:"cars/images/:carId", component:ImgListComponent},
-  {path:"list", component:EntityListComponent},
+  {path:"list", component:EntityListComponent, canActivate:[LoginGuard]},
+  {path:"login", component:LoginComponent},
   // {path:"cars/brands/:brandId", component:CarComponent},
   // {path:"cars/colors/:colorId", component:CarComponent},
 ];

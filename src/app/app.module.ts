@@ -24,6 +24,8 @@ import { from } from 'rxjs';
 import { EntityListComponent } from './components/entity-list/entity-list.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { ImgListComponent } from './components/img-list/img-list.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { ImgListComponent } from './components/img-list/img-list.component';
     EntityListComponent,
     TruncatePipe,
     ImgListComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

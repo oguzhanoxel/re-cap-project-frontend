@@ -27,11 +27,13 @@ export class CarDetailComponent implements OnInit {
       this.getCarImages(params["carId"])
     });
   }
+
   getCar(id:number){
     this.carService.getDetail(id).subscribe(response=>{
       this.car = response.data;
     });
   }
+  
   getCarImages(id:number){
     this.carImageService.getCarImages(id).subscribe(response=>{
       this.carImages = response.data;
