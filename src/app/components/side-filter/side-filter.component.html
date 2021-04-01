@@ -1,31 +1,3 @@
-<!-- <div class="container">
-    <form [formGroup]="filtersForm">
-        <div class="mb-3">
-            <label for="brandsSelect">Brands</label>
-            <div class="form-group">
-                <select formControlName="brandOption" id="brandsSelect" class="form-select">
-                    <option *ngFor="let brand of brands" [ngValue]="brand.id">{{ brand.name }}</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="mb-3">
-            <label for="colorsSelect">Colors</label>
-            <div class="form-group">
-                <select formControlName="colorOption" id="colorsSelect" class="form-select">
-                    <option *ngFor="let color of colors" [ngValue]="color.id">{{ color.name }}</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="mb-3">
-            <div class="d-grid">
-                <button (click)="applyFilters()" class="btn btn-primary">Filter</button>
-            </div>
-        </div>
-    </form>
-</div> -->
-
 <div class="d-flex flex-column p-3 bg-light sidenav" style="width: 280px;">
     <div class="container">
         <form [formGroup]="filtersForm">
@@ -57,3 +29,31 @@
         </form>
     </div>
 </div>
+
+<!-- <div class="container">
+    <form [formGroup]="filtersForm">
+        <div class="mb-3">
+            <label for="brandsSelect">Brands</label>
+            <div class="form-group">
+                <select formControlName="brandOption" id="brandsSelect" class="form-select">
+                    <option *ngFor="let brand of brands" [ngValue]="brand.id">{{ brand.name }}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="colorsSelect">Colors</label>
+            <div class="form-group">
+                <select formControlName="colorOption" id="colorsSelect" class="form-select">
+                    <option *ngFor="let color of colors" [ngValue]="color.id">{{ color.name }}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <div class="d-grid">
+                <button (click)="applyFilters()" class="btn btn-primary">Filter</button>
+            </div>
+        </div>
+    </form>
+</div> -->
