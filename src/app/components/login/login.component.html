@@ -1,5 +1,4 @@
 <body class="text-center" style="margin-top: 75px;">
-    
     <main class="form-signin">
       <form [formGroup]="loginForm">
         <h1 class="h3 mb-3 fw-normal">Please login</h1>
@@ -13,12 +12,13 @@
           <label for="floatingPassword">Password</label>
         </div>
     
-        <div class="checkbox mb-3">
+        <!-- <div class="checkbox mb-3">
           <label>
             <input type="checkbox" value="remember-me"> Remember me
           </label>
-        </div>
+        </div> -->
         <button (click)="login()" class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+        <p style="margin-top: 5px;">Don't have an accout? <a routerLink="/register">Sign Up</a></p>
       </form>
     </main>
 </body>

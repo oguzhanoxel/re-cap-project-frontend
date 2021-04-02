@@ -25,21 +25,6 @@ export class UserService {
 
   getByEmail(email:string):Observable<SingleResponseModel<User>>{
     let newPath = this.apiUrl + 'getbymail?email='+email;
-    return this.httpClient.get<SingleResponseModel<User>>(newPath);
-  }
-
-  add(user:User):Observable<ResponseModel>{
-    let path = this.apiUrl + "add";
-    return this.httpClient.post<ResponseModel>(path, user);
-  }
-  
-  delete(user:User):Observable<ResponseModel>{
-    let path = this.apiUrl + "delete";
-    return this.httpClient.post<ResponseModel>(path, user);
-  }
-  
-  update(user:User):Observable<ResponseModel>{
-    let path = this.apiUrl + "update";
-    return this.httpClient.post<ResponseModel>(path, user);
+    return this.httpClient.post<SingleResponseModel<User>>(newPath, email);
   }
 }

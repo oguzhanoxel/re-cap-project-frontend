@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/services/user.service';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-nav',
@@ -10,15 +14,19 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class NavComponent implements OnInit {
   searchForm: FormGroup
+  currentUser:User
 
   constructor(
     private router:Router,
     private formBuilder:FormBuilder,
-    private toastrService:ToastrService
+    private toastrService:ToastrService,
+    private localStorageService:LocalStorageService,
+    private authService:AuthService
     ) { }
 
   ngOnInit(): void {
     this.createSeachForm();
+    this.getCurrentUser;
   }
 
   createSeachForm(){
@@ -36,5 +44,18 @@ export class NavComponent implements OnInit {
     }else{
       this.toastrService.error("Something wrongs")
     }
+  }
+
+  isAuthenticated(){
+    return this.authService.isAutheticated()
+  }
+
+  getCurrentUser(){
+    return this.localStorageService.get('user')
+  }
+
+  logout(){
+    this.authService.logout()
+    this.router.navigate([''])
   }
 }
