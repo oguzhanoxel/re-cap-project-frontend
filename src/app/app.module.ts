@@ -26,6 +26,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
 import { ImgListComponent } from './components/img-list/img-list.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { PaymentComponent } from './components/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { RegisterComponent } from './components/register/register.component';
     ImgListComponent,
     LoginComponent,
     RegisterComponent,
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,

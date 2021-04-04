@@ -1,7 +1,7 @@
-<div class="card mt-4">
-    <div class="card-head">
+<div class="card" style="margin-top: 80px;">
+    <div class="card-head d-flex justify-content-center">
 
-      <div id="carouselExampleFade" class="carousel slide" data-bs-ride="carousel">
+      <div id="carouselExampleFade" class="carousel slide col-md-6" data-bs-ride="carousel">
         <div class="carousel-inner">
           <div *ngFor="let image of carImages; index as i; first as firstImage" class="carousel-item" [ngClass]="{ active: firstImage }" data-bs-interval="2000">
             <img [src]="apiUrl + image.imagePath" class="d-block w-100" alt="...">
@@ -19,10 +19,25 @@
 
     </div>
     <div class="card-body">
-      <div class="container col-md-6">
-        <div class="d-grid gap-2">
-          <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#rentModal">RENT</button>
-        </div>
+      <div *ngIf="!isRentable()" class="d-grid gap-2 col-6 mx-auto">
+        <button disabled type="button" class="btn btn-danger btn-lg">Not Available</button>
+      </div>
+      <div *ngIf="isRentable()" class="container col-md-6">
+        <form [formGroup]="rentalAddForm">
+          <div class="input-group d-flex justify-content-center">
+            <div class="mb-3">
+              <label for="rentDateInput" class="form-label">Rent Date</label>
+              <input formControlName="rentDate" type="date" min="{{ getDate(1) }}" class="form-control" id="rentDateInput">
+            </div>
+            <div class="mb-3" style="margin-left: 10px;">
+              <label for="returnDateInput" class="form-label">Return Date</label>
+              <input formControlName="returnDate" type="date" min="{{ getDate(2) }}" class="form-control" id="returnDateInput">
+            </div>
+          </div>
+          <div class="d-grid gap-2 col-6 mx-auto">
+            <button (click)="rent()" type="button" class="btn btn-primary btn-lg">RENT</button>
+          </div>
+        </form>
       </div>
       <h3 class="card-title">{{ car?.carName }}</h3>
       <h4>{{ car?.dailyPrice }} #</h4>
@@ -30,25 +45,6 @@
       <span class="text-secondary fw-bold fs-6">({{ car?.brandName }} / {{ car?.modelYear }} / {{ car?.colorName }})</span>
     </div>
   </div>
-
-  <div class="modal fade" id="rentModal" tabindex="-1" aria-labelledby="rentModal" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="rentModal">Rent</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- <div class="card card-outline-secondary my-4">
     <div class="card-header">
       Product Reviews

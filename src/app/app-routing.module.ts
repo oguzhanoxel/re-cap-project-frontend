@@ -5,6 +5,7 @@ import { CarComponent } from './components/car/car.component';
 import { EntityListComponent } from './components/entity-list/entity-list.component';
 import { ImgListComponent } from './components/img-list/img-list.component';
 import { LoginComponent } from './components/login/login.component';
+import { PaymentComponent } from './components/payment/payment.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginGuard } from './guards/login.guard';
 
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path:"list", component:EntityListComponent, canActivate:[LoginGuard]},
   {path:"login", component:LoginComponent},
   {path:"register", component:RegisterComponent},
+  {path:"payment", component:PaymentComponent},
   // {path:"cars/brands/:brandId", component:CarComponent},
   // {path:"cars/colors/:colorId", component:CarComponent},
 ];

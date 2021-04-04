@@ -1,17 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { ListResponseModel } from '../models/listResponseModel';
 import { Rental } from '../models/rental';
 import { RentalDetailDto } from '../models/rentalDetailDto';
 import { ResponseModel } from '../models/responseModel';
+import { SingleResponseModel } from '../models/singleResponseModel';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class RentalService {
-  apiUrl = "https://localhost:44348/api/"
+  apiUrl = environment.apiUrl
+
   constructor(private httpClient:HttpClient) { }
 
   getRentals():Observable<ListResponseModel<Rental>>{
@@ -22,6 +25,11 @@ export class RentalService {
   getDetails():Observable<ListResponseModel<RentalDetailDto>>{
     let path = this.apiUrl + "rentals/details"
     return this.httpClient.get<ListResponseModel<RentalDetailDto>>(path);
+  }
+
+  getByCar(carId:number):Observable<SingleResponseModel<Rental>>{
+    let path = this.apiUrl + "rentals/getbycarid?id=" + carId
+    return this.httpClient.get<SingleResponseModel<Rental>>(path)
   }
   
   add(rental:Rental):Observable<ResponseModel>{
