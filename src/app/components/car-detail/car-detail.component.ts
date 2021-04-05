@@ -9,6 +9,7 @@ import { RentalDetailDto } from 'src/app/models/rentalDetailDto';
 import { User } from 'src/app/models/user';
 import { CarImageService } from 'src/app/services/car-image.service';
 import { CarService } from 'src/app/services/car.service';
+import { FindexService } from 'src/app/services/findex.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { RentalService } from 'src/app/services/rental.service';
 
@@ -27,6 +28,7 @@ export class CarDetailComponent implements OnInit {
 
   constructor(
     private carService:CarService,
+    private findexService:FindexService,
     private carImageService:CarImageService,
     private rentalService:RentalService,
     private activatedRoute:ActivatedRoute,
@@ -68,8 +70,6 @@ export class CarDetailComponent implements OnInit {
   setRental(carId:number){
     this.rentalService.getByCar(carId).subscribe(response=>{
       this.rental = response.data
-      console.log(response.data)
-      console.log(this.rental)
     })
   }
 
@@ -93,6 +93,12 @@ export class CarDetailComponent implements OnInit {
         this.router.navigate(["payment"])
       }
     }
+  }
+
+  checkUserFindexPts():boolean{
+    let userPts:number = 2 // user modeline eklenip this.user.findexPts şeklinde atama yapılmalı
+    let carPts:number = 1 // car modeline eklenip this.car.findexPts şeklinde atama yapılmalı
+    return this.findexService.checkFindex(userPts, carPts)
   }
 
   isRentable():boolean{

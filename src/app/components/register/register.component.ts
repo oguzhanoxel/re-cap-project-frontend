@@ -37,13 +37,11 @@ export class RegisterComponent implements OnInit {
   register(){
     if(this.registerForm.valid){
       let registerModel = this.registerForm.value;
-      console.log(registerModel)
       if(registerModel['password'] !== registerModel['confirmPassword']){
         this.toastrService.warning("Please enter the same value again.", "Confirm Password")
       }else{
         this.authService.register(registerModel).subscribe(response=>{
-          this.toastrService.success("Welcome " + registerModel['firstName'])
-          this.router.navigate([""])
+          this.router.navigate(["/login"])
         }, responseError => {
           console.log(responseError)
         })

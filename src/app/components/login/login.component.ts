@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
         this.localStorageService.set("token", response.data.token)
         this.router.navigate([""])
       }, responseError=>{
-        this.toastrService.error(responseError.error)
+        this.toastrService.error("e-mail or password wrong", "!!!")
       })
     }
   }

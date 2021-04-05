@@ -30,8 +30,7 @@
       <div *ngIf="isAuthenticated()" class="dropdown dropstart" style="margin-left: 10px; margin-right: 10px;">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">{{ getCurrentUser().firstName }} {{ getCurrentUser().lastName }}</button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" href="#">Action</a></li>
-          <li><a class="dropdown-item" href="#">Another action</a></li>
+          <li><a class="dropdown-item" routerLink="/profile">My Profile</a></li>
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item" (click)="logout()" style="background-color: rgba(255, 0, 0, 0.705);">Logout</a></li>
         </ul>

@@ -48,7 +48,6 @@ export class AuthService {
 
   private setCurrentUser(email:string){
     this.userService.getByEmail(email).subscribe(response => {
-      console.log(response.data)
       let user = response.data
       this.localStorageService.set("user", user)
     })

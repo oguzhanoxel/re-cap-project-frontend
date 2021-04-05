@@ -27,6 +27,7 @@ import { ImgListComponent } from './components/img-list/img-list.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { PaymentComponent } from './components/payment/payment.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { PaymentComponent } from './components/payment/payment.component';
     LoginComponent,
     RegisterComponent,
     PaymentComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
